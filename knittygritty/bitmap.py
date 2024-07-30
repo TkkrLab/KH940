@@ -9,8 +9,8 @@ COLOR_MAP = {
 }
 
 INV_COLOR_MAP = {
-    (255, 255, 255): False,
-    (0, 0, 0): True,
+    255: False,
+    0: True,
 }
 
 
@@ -25,7 +25,7 @@ def write_pattern(pattern, filename):
 
 
 def read_pattern(filename):
-    image = Image.open(filename)
+    image = Image.open(filename).convert('L')
     width, height = image.size
 
     basename = path.basename(filename)
@@ -35,12 +35,8 @@ def read_pattern(filename):
     rows = []
     for y in range(height):
         row = []
-
         for x in range(width):
             v = INV_COLOR_MAP[image.getpixel((x, y))]
-
             row.append(v)
-
         rows.append(row)
-
     return Pattern(pattern_number, rows)

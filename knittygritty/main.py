@@ -34,7 +34,7 @@ def _show_pattern(pattern):
     print
 
     for row in pattern.rows:
-        print ''.join('█' if b else '░' for b in row)
+        print ''.join('x' if b else ' ' for b in row)
 
     print
 
@@ -68,9 +68,9 @@ def cli():
 @click.option('--save/--no-save', 'save_on_exit', default=True, is_flag=True)
 @click.option('--save-raw', is_flag=True)
 def emulate_folder(port, folder, save_on_exit, save_raw):
-    if not path.exists(port):
-        print 'ERROR: Port %s not found - is the cable connected?' % port
-        sys.exit(1)
+    # if not path.exists(port):
+    #     print 'ERROR: Port %s not found - is the cable connected?' % port
+    #     sys.exit(1)
 
     machine = _folder_to_machine(folder)
 
